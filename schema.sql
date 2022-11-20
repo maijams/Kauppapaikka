@@ -3,7 +3,7 @@ CREATE TABLE users (
     username TEXT UNIQUE,
     password TEXT
 );
-CREATE TABLE sale_items (
+CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     header TEXT,
     content TEXT,
@@ -17,5 +17,5 @@ CREATE TABLE sale_items (
 );
 CREATE TABLE user_favourites (
     user_id INTEGER REFERENCES users,
-    sale_item_id INTEGER REFERENCES sale_items
+    sale_item_id INTEGER REFERENCES items
 );
