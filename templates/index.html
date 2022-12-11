@@ -1,3 +1,11 @@
 <h1>Tervetuloa Kauppapaikkaan!</h1>
 
 <a href="/items">Selaa ilmoituksia</a>
+
+
+{% if session.user_id %}
+Olet kirjautunut sisään.
+<a href="/new">Lisää ilmoitus</a> | <a href="/logout">Kirjaudu ulos</a>
+{% else %}
+<a href="/login">Kirjaudu sisään</a>
+{% endif %}
