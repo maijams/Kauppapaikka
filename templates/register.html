@@ -1,4 +1,28 @@
+<title>Kauppapaikka</title>
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+{% if session.user_id %}
+
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/new">Lisää ilmoitus</a>
+    <a href="/logout">Kirjaudu ulos</a>   
+</div>
+
+
+{% else %}
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/login">Kirjaudu</a>   
+</div>
+
 <form action="/register" method="post">
+    <h3> Luo uusi tunnus: </h3>
     Tunnus: <input type="text" name="username">
     <p>
     Salasana: <input type="password" name="password1">
@@ -6,4 +30,12 @@
     Salasana uudestaan: <input type="password" name="password2">
     <p>
     <input type="submit" value="Luo tunnus">
-    </form>
+</form>
+
+
+{% endif %}
+
+
+
+
+{% endblock %}

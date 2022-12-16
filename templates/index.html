@@ -1,11 +1,40 @@
-<h1>Tervetuloa Kauppapaikkaan!</h1>
+<title>Kauppapaikka</title>
+{% extends "layout.html" %}
 
-<a href="/items">Selaa ilmoituksia</a>
+
+
+{% block content %}
+
 
 
 {% if session.user_id %}
-Olet kirjautunut sisään.
-<a href="/new">Lisää ilmoitus</a> | <a href="/logout">Kirjaudu ulos</a>
+
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/new">Lisää ilmoitus</a>
+    <a href="/logout">Kirjaudu ulos</a>   
+</div>
+
+
+
 {% else %}
-<a href="/login">Kirjaudu sisään</a>
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/login">Kirjaudu</a>   
+</div>
+
+
 {% endif %}
+
+
+<h1>Tervetuloa Kauppapaikkaan!</h1>
+
+
+
+
+
+
+
+{% endblock %}

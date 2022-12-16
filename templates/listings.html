@@ -1,8 +1,32 @@
-<a href="/">Etusivulle</a>
+<title>Kauppapaikka</title>
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+{% if session.user_id %}
+
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/new">Lisää ilmoitus</a>
+    <a href="/logout">Kirjaudu ulos</a>   
+</div>
+
+{% else %}
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/items">Selaa ilmoituksia</a>
+    <a href="/login">Kirjaudu</a>   
+</div>
+
+Kirjaudu sisään lisätäksesi ilmoituksia
+
+{% endif %}
 
 <h1>Tuotteet</h1>
 {% if items %}
-<table style="width: 50%">
+<table>
     <thead style="text-align:left">
         <tr>
             <th>Tuote</th>
@@ -21,9 +45,14 @@
         </tr>
     </tbody>
     {% endfor %}
-{% else %}
-<h3>Ei tuotteita</h3>
-{% endif %}
 </table>
 
-<a href="/new">Lisää tuote</a>
+{% else %}
+
+<h3>Ei tuotteita</h3>
+
+{% endif %}
+
+
+
+{% endblock %}

@@ -23,8 +23,8 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
-        
-        
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -43,7 +43,7 @@ def logout():
     users.logout()
     return redirect("/")
 
-        
+
 @app.route("/items")
 def listings():
     result = db.session.execute("SELECT * FROM items")
@@ -63,6 +63,7 @@ def send():
     price = request.form["price"]
     location = request.form["location"]
     sql = "INSERT INTO items (header, content, price, location) VALUES (:header, :content, :price, :location)"
-    db.session.execute(sql, {"header":header,"content":content, "price":price, "location":location})
+    db.session.execute(
+        sql, {"header": header, "content": content, "price": price, "location": location})
     db.session.commit()
     return redirect("/items")
