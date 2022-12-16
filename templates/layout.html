@@ -1,7 +1,25 @@
 <!doctype html>
-<link rel="stylesheet" href="/static/main.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="header">
+<link rel='stylesheet' href='/static/main.css'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<div class='header'>
   <h1>Kauppapaikka</h1>
 </div>
-{% block content %}{% endblock %}
+
+{% if session.user_id %}
+<div class='topnav'>
+    <a href='/'>Etusivu</a>
+    <a href='/items'>Selaa ilmoituksia</a>
+    <a href='/own_data'>Omat tiedot</a>
+    <a href='/logout'>Kirjaudu ulos</a>   
+</div>
+{% else %}
+<div class='topnav'>
+    <a href='/'>Etusivu</a>
+    <a href='/items'>Selaa ilmoituksia</a>
+    <a href='/login'>Kirjaudu</a>   
+</div>
+{% endif %}
+
+{% block content %}
+{% endblock %}

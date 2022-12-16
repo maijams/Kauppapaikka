@@ -1,48 +1,25 @@
-<title>Kauppapaikka</title>
-{% extends "layout.html" %}
-
-
-
+{% extends 'layout.html' %}
 {% block content %}
 
-
 {% if session.user_id %}
-
-<div class="topnav">
-    <a href="/">Etusivu</a>
-    <a href="/items">Selaa ilmoituksia</a>
-    <a href="/new">Lisää ilmoitus</a>
-    <a href="/logout">Kirjaudu ulos</a>   
-</div>
-
-<form action="/send" method="POST">
+<form action='/new' method='POST'>
 Tuote: <br>
-<input name="header" rows="1" cols="20"></textarea>
-<br>
+<input type='text' name='header' size='50'>
+<p>
 Kuvaus: <br>
-<textarea name="content" rows="4" cols="40"></textarea>
-<br>
+<textarea name='content' rows='6' cols='70'></textarea>
+<p>
 Hinta €: <br>
-<input name="price" rows="1" cols="5"></textarea>
-<br>
+<input type='number' name='price' size='5'>
+<p>
 Sijainti: <br>
-<input name="location" rows="1" cols="20"></textarea>
-<br>
-<input type="submit" value="Lisää tuote">
+<input type='text' name='location' size='50'>
+<p>
+<input type='submit' value='Lisää tuote'>
 </form>
 
-
-
 {% else %}
-<div class="topnav">
-    <a href="/">Etusivu</a>
-    <a href="/items">Selaa ilmoituksia</a>
-    <a href="/login">Kirjaudu</a>   
-</div>
-
 
 {% endif %}
 
-
-
-{% endblock content %}
+{% endblock %}

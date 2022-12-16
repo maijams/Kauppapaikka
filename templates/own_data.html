@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% if session.user_id %}
+<h2>Oma sivu</h2>
+<p>
+<a href='/own_items'>Omat ilmoitukset</a>
+<p>
+<a href='/new'>Lisää ilmoitus</a>
+
+{% else %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,40 +1,6 @@
-<title>Kauppapaikka</title>
-{% extends "layout.html" %}
-
-
-
+{% extends 'layout.html' %}
 {% block content %}
 
-
-
-{% if session.user_id %}
-
-<div class="topnav">
-    <a href="/">Etusivu</a>
-    <a href="/items">Selaa ilmoituksia</a>
-    <a href="/new">Lisää ilmoitus</a>
-    <a href="/logout">Kirjaudu ulos</a>   
-</div>
-
-
-
-{% else %}
-<div class="topnav">
-    <a href="/">Etusivu</a>
-    <a href="/items">Selaa ilmoituksia</a>
-    <a href="/login">Kirjaudu</a>   
-</div>
-
-
-{% endif %}
-
-
 <h1>Tervetuloa Kauppapaikkaan!</h1>
-
-
-
-
-
-
 
 {% endblock %}

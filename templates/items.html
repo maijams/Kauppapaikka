@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% if session.user_id %}
+<p>
+<a href='/new'>Lisää ilmoitus</a>
+
+{% else %}
+<p>
+<a href='/login'>Kirjaudu sisään</a> lisätäksesi omia ilmoituksia
+
+{% endif %}
+
+<h1>Tuotteet</h1>
+{% if items %}
+<table>
+    <thead style='text-align:left'>
+        <tr>
+            <th>Tuote</th>
+            <th>Hinta</th>
+            <th>Sijainti</th>
+            <th>Ilmoitus jätetty</th>
+        </tr>
+    </thead>
+    {% for item in items %}
+    <tbody>
+        <tr>
+            <td>{{ item.header }}</td>
+            <td>{{ item.price }} €</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% else %}
+<h3>Ei tuotteita</h3>
+
+{% endif %}
+
+{% endblock %}
