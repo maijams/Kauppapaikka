@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+{% if item %}
+{% for i in item %}
+
+<h1>{{ i.header }}</h1>
+<p>Kuvaus:
+{{ i.content }}
+<p>Hinta:
+{{ i.price }} €
+<p>Sijainti:
+{{ i.location }}
+<p>Lisätty:
+{{ i.sent_at.strftime('%d.%m.%Y %H:%M') }}
+
+{% endfor %}
+
+{% endif%}
+
+{% if session.user_id %}
+<p>Lisää suosikkeihin
+
+{% else %}
+
+{% endif %}
+
+{% endblock %}

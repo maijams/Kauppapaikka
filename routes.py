@@ -52,6 +52,12 @@ def all_items():
     return render_template('items.html', items=list)
 
 
+@app.route('/item/<id>')
+def item(id):
+    data = items.get_item_by_id(id)
+    return render_template('item.html', item=data)
+
+
 @app.route('/own_items')
 def own_items():
     user = users.user_id()

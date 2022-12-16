@@ -23,3 +23,8 @@ def delete_item(id):
     sql = f'UPDATE items SET visible=false WHERE id={id}'
     db.session.execute(sql)
     db.session.commit()
+    
+def get_item_by_id(id):
+    sql = f'SELECT * FROM items WHERE visible=TRUE AND id={id}'
+    result = db.session.execute(sql)
+    return result.fetchall()

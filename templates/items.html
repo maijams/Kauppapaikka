@@ -13,6 +13,7 @@
 
 <h1>Tuotteet</h1>
 {% if items %}
+<form action='/item' method='POST'>
 Järjestä:
 <a href='/items_newest'>Uusin</a>
 <a href='/items_oldest'>Vanhin</a>
@@ -31,7 +32,7 @@ Järjestä:
     {% for item in items %}
     <tbody>
         <tr>
-            <td>{{ item.header }}</td>
+            <td><a href='/item/{{ item.id }}'>{{ item.header }}</a></td>
             <td>{{ item.price }} €</td>
             <td>{{ item.location }}</td>
             <td>{{ item.sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
@@ -39,6 +40,7 @@ Järjestä:
     </tbody>
     {% endfor %}
 </table>
+</form>
 
 {% else %}
 <h3>Ei tuotteita</h3>
