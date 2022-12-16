@@ -4,6 +4,7 @@
 {% if session.user_id %}
 <h1>Omat ilmoitukset</h1>
 {% if items %}
+<form action='/delete_item' method='POST'>
 <table>
     <thead style='text-align:left'>
         <tr>
@@ -20,10 +21,13 @@
             <td>{{ item.price }} €</td>
             <td>{{ item.location }}</td>
             <td>{{ item.sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
+            <td><button name='id' type='submit' value={{ item.id }}>Poista</button></td>
         </tr>
     </tbody>
     {% endfor %}
 </table>
+</form>
+
 {% endif %}
 
 {% else %}

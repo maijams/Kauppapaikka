@@ -57,6 +57,13 @@ def own_items():
     user = users.user_id()
     list = items.get_own_items(user)
     return render_template('own_items.html', items=list)
+            
+        
+@app.route('/delete_item', methods=['POST'])
+def delete_item():
+    id = request.form['id']
+    items.delete_item(id)
+    return redirect('/own_items')
 
 
 @app.route('/own_data')
@@ -101,3 +108,5 @@ def items_lowest_price():
 def items_highest_price():
     list = items.get_sorted_items('price', 'DESC')
     return render_template('items.html', items=list)
+
+
