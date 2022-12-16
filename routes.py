@@ -48,7 +48,7 @@ def logout():
 
 @app.route('/items')
 def all_items():
-    list = items.get_items()
+    list = items.get_sorted_items('sent_at', 'DESC')
     return render_template('items.html', items=list)
 
 
@@ -79,6 +79,25 @@ def new():
         return redirect('/items')
     
 
+@app.route('/items_newest')
+def items_newest():
+    list = items.get_sorted_items('sent_at', 'DESC')
+    return render_template('items.html', items=list)
+ 
     
+@app.route('/items_oldest')
+def items_oldest():
+    list = items.get_sorted_items('sent_at', '')
+    return render_template('items.html', items=list)
 
 
+@app.route('/items_lowest_price')
+def items_lowest_price():
+    list = items.get_sorted_items('price', '')
+    return render_template('items.html', items=list)
+
+
+@app.route('/items_highest_price')
+def items_highest_price():
+    list = items.get_sorted_items('price', 'DESC')
+    return render_template('items.html', items=list)
