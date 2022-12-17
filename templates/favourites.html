@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% if session.user_id %}
+<h1>Omat suosikit</h1>
+{% if items %}
+<form action='/delete_favourite' method='POST'>
+<table>
+    <thead style='text-align:left'>
+        <tr>
+            <th>Tuote</th>
+            <th>Hinta</th>
+            <th>Sijainti</th>
+            <th>Ilmoitus jätetty</th>
+        </tr>
+    </thead>
+    {% for item in items %}
+    <tbody>
+        <tr>
+            <td><a href='/item/{{ item[0].id }}'>{{ item[0].header }}</a></td>
+            <td>{{ item[0].price }} €</td>
+            <td>{{ item[0].location }}</td>
+            <td>{{ item[0].sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
+            <td><button name='id' type='submit' value={{ item[0].id }}>Poista suosikki</button></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</form>
+
+{% else %}
+<p>Ei omia suosikkeja
+
+{% endif%}
+
+{% else %}
+
+{% endif %}
+
+{% endblock %}

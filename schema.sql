@@ -18,6 +18,8 @@ CREATE TABLE items (
 );
 
 CREATE TABLE user_favourites (
+    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
-    sale_item_id INTEGER REFERENCES items
+    sale_item_id INTEGER REFERENCES items,
+    visible BOOLEAN
 );

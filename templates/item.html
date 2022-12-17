@@ -3,6 +3,7 @@
 
 
 {% if item %}
+
 {% for i in item %}
 
 <h1>{{ i.header }}</h1>
@@ -20,7 +21,11 @@
 {% endif%}
 
 {% if session.user_id %}
-<p>Lisää suosikkeihin
+{% for i in item %}
+
+<p><a href='/add_favourite/{{ i.id }}'>Lisää suosikkeihin</a>
+{% endfor %}
+
 
 {% else %}
 

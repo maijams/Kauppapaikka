@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, redirect, request
 import users
 import items
+import user_favourites as fav
 
 
 @app.route('/')
@@ -116,3 +117,25 @@ def items_highest_price():
     return render_template('items.html', items=list)
 
 
+@app.route('/favourites')
+def get_favourites():
+    user_id = users.user_id()
+    list = fav.get_favourites(user_id)
+    return render_template('favourites.html', items=list)
+
+
+@app.route('/add_favourite/<item>')
+def add_favourite(item):
+    user_id = users.user_id()
+    if fav.is_already_favourite(user_id, item):
+        return render_template('error.html', message='Tuote on jo suosikkilistallasi')
+    fav.add_favourite(user_id, item)
+    return redirect('/favourites')
+
+
+@app.route('/delete_favourite', methods=['POST'])
+def delete_favourite():
+    user_id = users.user_id()
+    item = request.form['id']
+    fav.delete_favourite(user_id, item)
+    return redirect('/favourites')
