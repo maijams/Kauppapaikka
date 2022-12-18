@@ -6,8 +6,8 @@ def add_comment(comment, item_id, user_id):
     db.session.execute(sql, {"content":comment, "item_id":item_id, "user_id":user_id})
     db.session.commit()
     
-def get_comments(id):
-    sql = "SELECT c.content, u.username, c.sent_at FROM comments c, users u WHERE item_id=:id AND u.id=c.sender_id"
-    result1 = db.session.execute(sql, {"id":id})
-    comments = result1.fetchall()
+def get_comments(item):
+    sql = f"SELECT c.content, u.username, c.sent_at FROM comments c, users u WHERE item_id=:item AND u.id=c.sender_id ORDER BY c.sent_at DESC"
+    result = db.session.execute(sql, {'item':item})
+    comments = result.fetchall()
     return comments

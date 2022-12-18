@@ -3,8 +3,13 @@
 
 {% if session.user_id %}
 <form class='form-styled' action='/new' method='POST' enctype="multipart/form-data">
-Tuote: <br>
+Otsikko: <br>
 <input type='text' name='header' size='50'>
+<p>
+Ilmoituksen tyyppi:<br>
+<input type='radio' name='type' value='Myydään'>Myydään
+<input type='radio' name='type' value='Ostetaan'>Ostetaan
+<input type='radio' name='type' value='Annetaan'>Annetaan
 <p>
 Kuvaus: <br>
 <textarea name='content' rows='6' cols='70'></textarea>

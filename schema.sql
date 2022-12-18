@@ -7,13 +7,13 @@ CREATE TABLE users (
 CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     header TEXT,
+    type TEXT,
     content TEXT,
     category INTEGER,
     price INTEGER,
     user_id INTEGER REFERENCES users,
     location TEXT,
     sent_at TIMESTAMP,
-    type INTEGER,
     visible BOOLEAN
 );
 
@@ -29,14 +29,6 @@ CREATE TABLE comments (
     content TEXT, 
     item_id INTEGER REFERENCES items, 
     sender_id INTEGER REFERENCES users, 
-    sent_at TIMESTAMP
-);
-
-CREATE TABLE messages (
-    id SERIAL PRIMARY KEY, 
-    content TEXT, 
-    sender_id INTEGER REFERENCES users, 
-    reciever_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
 );
 

@@ -9,6 +9,7 @@
     <thead style='text-align:left'>
         <tr>
             <th>Tuote</th>
+            <th>Tyyppi</th>
             <th>Hinta</th>
             <th>Sijainti</th>
             <th>Ilmoitus jätetty</th>
@@ -18,6 +19,7 @@
     <tbody>
         <tr>
             <td><a href='/item/{{ item.id }}'>{{ item.header }}</a></td>
+            <td>{{ item.type }}</td>
             <td>{{ item.price }} €</td>
             <td>{{ item.location }}</td>
             <td>{{ item.sent_at.strftime('%d.%m.%Y %H:%M') }}</td>

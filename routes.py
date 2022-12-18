@@ -60,6 +60,7 @@ def item(id):
     comment = comments.get_comments(id)
     return render_template('item.html', item=data, photo=photo, comments=comment)
 
+
 @app.route('/show_photo/<id>')
 def show_photo(id):
     photo = items.show_photo(id)
@@ -92,11 +93,12 @@ def new():
 
     if request.method == 'POST':
         header = request.form['header']
+        type = request.form['type']
         content = request.form['content']
         price = request.form['price']
         location = request.form['location']
         user_id = users.user_id()
-        id = items.add_item(header, content, price, location, user_id)
+        id = items.add_item(header, type, content, price, location, user_id)
         
         photo = request.files['photo']
         name = photo.filename

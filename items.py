@@ -11,12 +11,12 @@ def get_own_items(user_id):
     result = db.session.execute(sql, {'user_id':user_id})
     return result.fetchall()
 
-def add_item(header, content, price, location, user_id):
-    sql = ('INSERT INTO items (header, content, price, location, user_id, sent_at, visible) '
-           'VALUES (:header, :content, :price, :location, :user_id, NOW(), true)')
+def add_item(header, type, content, price, location, user_id):
+    sql = ('INSERT INTO items (header, type, content, price, location, user_id, sent_at, visible) '
+           'VALUES (:header, :type, :content, :price, :location, :user_id, NOW(), true)')
     db.session.execute(
         sql,
-        {'header':header, 'content':content, 'price':price, 'location':location, 'user_id':user_id})
+        {'header':header, 'type':type, 'content':content, 'price':price, 'location':location, 'user_id':user_id})
     db.session.commit()
     sql = 'SELECT id FROM items ORDER BY id DESC'
     new_id = db.session.execute(sql).fetchone()[0]
@@ -40,8 +40,8 @@ def add_photo(name, file, item_id):
     
 def show_photo(item):
     try:
-        sql = 'SELECT data FROM photos WHERE :item_id'
-        result = db.session.execute(sql, {'item_id':item})
+        sql = 'SELECT data FROM photos WHERE item_id=:item'
+        result = db.session.execute(sql, {'item':item})
         data = result.fetchone()[0]
         photo = make_response(bytes(data))
         photo.headers.set("Content-Type","image/png")
