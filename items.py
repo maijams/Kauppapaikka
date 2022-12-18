@@ -44,9 +44,12 @@ def add_item(header, type, content, price, location, user_id):
         sql,
         {'header':header, 'type':type, 'content':content, 'price':price, 'location':location, 'user_id':user_id})
     db.session.commit()
+   
+    
+def get_latest_item_id():
     sql = 'SELECT id FROM items ORDER BY id DESC'
-    new_id = db.session.execute(sql).fetchone()[0]
-    return new_id
+    id = db.session.execute(sql).fetchone()[0]
+    return id
 
 
 def delete_item(id):

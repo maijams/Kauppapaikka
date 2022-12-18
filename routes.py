@@ -50,15 +50,21 @@ def logout():
 
 @app.route('/items')
 def all_items():
-    list = items.get_sorted_items('sent_at', 'DESC')
+    try:
+        list = items.get_sorted_items('sent_at', 'DESC')
+    except:
+        return render_template('error.html', message='Ilmoitusten haussa tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/item/<id>')
 def item(id):
     data = items.get_item_by_id(id)
-    photo = photos.show_photo(id)
-    comment = comments.get_comments(id)
+    try:
+        photo = photos.show_photo(id)
+        comment = comments.get_comments(id)
+    except:
+        return render_template('error.html', message='Ilmoituksen näyttämisessä tapahtui virhe')
     return render_template('item.html', item=data, photo=photo, comments=comment)
 
 
@@ -71,7 +77,10 @@ def show_photo(id):
 @app.route('/own_items')
 def own_items():
     user = users.user_id()
-    list = items.get_own_items(user)
+    try:
+        list = items.get_own_items(user)
+    except:
+        return render_template('error.html', message='Ilmoitusten haussa tapahtui virhe')
     return render_template('own_items.html', items=list)
             
         
@@ -79,7 +88,10 @@ def own_items():
 def delete_item():
     users.check_csrf()
     id = request.form['id']
-    items.delete_item(id)
+    try:
+        items.delete_item(id)
+    except:
+        return render_template('error.html', message='Ilmoituksen poistamisessa tapahtui virhe')
     return redirect('/own_items')
 
 
@@ -101,55 +113,83 @@ def new():
         price = request.form['price']
         location = request.form['location']
         user_id = users.user_id()
-        id = items.add_item(header, type, content, price, location, user_id)
-        
+        try:
+            items.add_item(header, type, content, price, location, user_id)
+        except:
+            return render_template('error.html', message='Ilmoituksen lisääminen ei onnistunut')
+
         photo = request.files['photo']
         if photo is not None:
+            id = items.get_latest_item_id()
             name = photo.filename
-            photos.add_photo(name, photo, id)
+            try:
+                photos.add_photo(name, photo, id)
+            except:
+                return render_template('error.html', message='Kuvan lisääminen ei onnistunut')
         return redirect('/items')
     
 
 @app.route('/items_sort_newest')
 def items_newest():
-    list = items.get_sorted_items('sent_at', 'DESC')
+    try:
+        list = items.get_sorted_items('sent_at', 'DESC')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
  
     
 @app.route('/items_sort_oldest')
 def items_oldest():
-    list = items.get_sorted_items('sent_at', '')
+    try:
+        list = items.get_sorted_items('sent_at', '')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/items_sort_lowest_price')
 def items_lowest_price():
-    list = items.get_sorted_items('price', '')
+    try:
+        list = items.get_sorted_items('price', '')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/items_sort_highest_price')
 def items_highest_price():
-    list = items.get_sorted_items('price', 'DESC')
+    try:
+        list = items.get_sorted_items('price', 'DESC')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/items_sort_type_asc')
 def items_type_asc():
-    list = items.get_sorted_items('type', '')
+    try:
+        list = items.get_sorted_items('type', '')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/items_sort_type_desc')
 def items_type_desc():
-    list = items.get_sorted_items('type', 'DESC')
+    try:
+        list = items.get_sorted_items('type', 'DESC')
+    except:
+        return render_template('error.html', message='Tuotteiden järjestämisessä tapahtui virhe')
     return render_template('items.html', items=list)
 
 
 @app.route('/favourites')
 def get_favourites():
     user_id = users.user_id()
-    list = fav.get_favourites(user_id)
+    try:
+        list = fav.get_favourites(user_id)
+    except:
+        return render_template('error.html', message='Suosikkien haussa tapahtui virhe')
     return render_template('favourites.html', items=list)
 
 
@@ -167,7 +207,10 @@ def delete_favourite():
     users.check_csrf()
     user_id = users.user_id()
     item = request.form['id']
-    fav.delete_favourite(user_id, item)
+    try:
+        fav.delete_favourite(user_id, item)
+    except:
+        return render_template('error.html', message='Suosikkien haussa tapahtui virhe')
     return redirect('/favourites')
 
 
@@ -177,5 +220,8 @@ def add_comment():
     comment = request.form["comment"]
     item_id = request.form["item_id"]
     user_id = users.user_id()
-    comments.add_comment(comment, item_id, user_id)
+    try:
+        comments.add_comment(comment, item_id, user_id)
+    except:
+        return render_template('error.html', message='Kommentin lisäyksessä tapahtui virhe')
     return redirect("/item/" + str(item_id))
