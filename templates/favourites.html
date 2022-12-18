@@ -24,6 +24,7 @@
             <td>{{ item[0].location }}</td>
             <td>{{ item[0].sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
             <td><button name='id' type='submit' value={{ item[0].id }}>Poista suosikki</button></td>
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </tr>
     </tbody>
     {% endfor %}

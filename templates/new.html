@@ -24,6 +24,7 @@ Kuva:<br>
 <input type='file' name='photo'>
 <p>
 <input type='submit' value='Lisää tuote'>
+<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 
 {% else %}

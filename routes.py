@@ -76,6 +76,7 @@ def own_items():
         
 @app.route('/delete_item', methods=['POST'])
 def delete_item():
+    users.check_csrf()
     id = request.form['id']
     items.delete_item(id)
     return redirect('/own_items')
@@ -92,6 +93,7 @@ def new():
         return render_template('new.html')
 
     if request.method == 'POST':
+        users.check_csrf()
         header = request.form['header']
         type = request.form['type']
         content = request.form['content']
@@ -160,6 +162,7 @@ def add_favourite(item):
 
 @app.route('/delete_favourite', methods=['POST'])
 def delete_favourite():
+    users.check_csrf()
     user_id = users.user_id()
     item = request.form['id']
     fav.delete_favourite(user_id, item)
@@ -168,6 +171,7 @@ def delete_favourite():
 
 @app.route("/add_comment", methods=["POST"])
 def add_comment():
+    users.check_csrf()
     comment = request.form["comment"]
     item_id = request.form["item_id"]
     user_id = users.user_id()

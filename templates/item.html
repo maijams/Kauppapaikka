@@ -42,6 +42,7 @@
     <textarea name="comment" rows="2" cols="60"></textarea><br>
     <input type="submit" value="Lähetä">
     <input type="hidden" name="item_id" value="{{ i.id }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% endif%}
 
