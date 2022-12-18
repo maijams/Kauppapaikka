@@ -7,8 +7,8 @@ def get_sorted_items(sort, direction):
     return result.fetchall()
 
 def get_own_items(user_id):
-    sql = f'SELECT * FROM items WHERE visible=TRUE AND user_id={user_id} ORDER BY sent_at DESC'
-    result = db.session.execute(sql)
+    sql = 'SELECT * FROM items WHERE visible=TRUE AND user_id=:user_id ORDER BY sent_at DESC'
+    result = db.session.execute(sql, {'user_id':user_id})
     return result.fetchall()
 
 def add_item(header, content, price, location, user_id):
@@ -23,13 +23,13 @@ def add_item(header, content, price, location, user_id):
     return new_id
 
 def delete_item(id):
-    sql = f'UPDATE items SET visible=false WHERE id={id}'
-    db.session.execute(sql)
+    sql = 'UPDATE items SET visible=false WHERE id=:id'
+    db.session.execute(sql, {'id':id})
     db.session.commit()
     
 def get_item_by_id(id):
-    sql = f'SELECT * FROM items WHERE visible=TRUE AND id={id}'
-    result = db.session.execute(sql)
+    sql = 'SELECT * FROM items WHERE visible=TRUE AND id=:id'
+    result = db.session.execute(sql, {'id':id})
     return result.fetchall()
 
 def add_photo(name, file, item_id):
@@ -40,8 +40,8 @@ def add_photo(name, file, item_id):
     
 def show_photo(item):
     try:
-        sql = f'SELECT data FROM photos WHERE item_id={item}'
-        result = db.session.execute(sql)
+        sql = 'SELECT data FROM photos WHERE :item_id'
+        result = db.session.execute(sql, {'item_id':item})
         data = result.fetchone()[0]
         photo = make_response(bytes(data))
         photo.headers.set("Content-Type","image/png")
