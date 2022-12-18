@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 def register(username, password):
     hash_value = generate_password_hash(password)
     try:
-        sql = 'INSERT INTO users (username,password) VALUES (:username,:password)'
+        sql = 'INSERT INTO users (username, password) VALUES (:username, :password)'
         db.session.execute(sql, {'username':username, 'password':hash_value})
         db.session.commit()
     except:
@@ -23,17 +23,17 @@ def login(username, password):
         return False
     else:
         if check_password_hash(user.password, password):
-            session['user_id'] = user.id
-            session["username"] = username
+            session['user_id'] = user[0]
+            session["user_name"] = username
             session["csrf_token"] = secrets.token_hex(16)
             return True
-        else:
-            return False
+    return False
+    
 
 
 def logout():
     del session['user_id']
-    del session["username"]
+    del session["user_name"]
     del session["csrf_token"]
 
 

@@ -3,4 +3,24 @@
 
 <h1>Tervetuloa Kauppapaikkaan!</h1>
 
+{% if session.user_id %}
+Olet kirjautunut sisään nimimerkillä <b>{{ session.user_name }}</b>.
+<p> Tällä sivustolla voit selata muiden jättämiä osto-, myynti-, 
+    ja annetaan-ilmoituksia. 
+<p>Kirjautuneena käyttäjänä voit lisäksi:
+    <li>Lisätä ilmoituksia suosikkeihin</li>
+    <li>Kommentoida ilmoituksia</li>
+    <li>Jättää omia ilmoituksia</li>
+
+{% else %}
+<p> Tällä sivustolla voit selata muiden jättämiä osto-, myynti-, 
+    ja annetaan-ilmoituksia. 
+<p>Jos kirjaudut sisään, voit lisäksi:
+    <li>Lisätä ilmoituksia suosikkeihin</li>
+    <li>Kommentoida ilmoituksia</li>
+    <li>Jättää omia ilmoituksia</li>
+
+
+{% endif %}
+
 {% endblock %}
