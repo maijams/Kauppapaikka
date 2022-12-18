@@ -107,17 +107,17 @@ def new():
 
     if request.method == 'POST':
         users.check_csrf()
-        header = request.form['header']
-        type = request.form['type']
-        content = request.form['content']
-        price = request.form['price']
-        location = request.form['location']
-        user_id = users.user_id()
         try:
+            header = request.form['header']
+            type = request.form['type']
+            content = request.form['content']
+            price = request.form['price']
+            location = request.form['location']
+            user_id = users.user_id()
             items.add_item(header, type, content, price, location, user_id)
         except:
-            return render_template('error.html', message='Ilmoituksen lisääminen ei onnistunut')
-
+            message = 'Ilmoituksen lisääminen ei onnistunut. Täytithän kaikki vaaditut kentät?'
+            return render_template('error.html', message=message)
         photo = request.files['photo']
         if photo is not None:
             id = items.get_latest_item_id()

@@ -3,24 +3,27 @@
 
 {% if session.user_id %}
 <form class='form-styled' action='/new' method='POST' enctype="multipart/form-data">
-Otsikko: <br>
-<input type='text' name='header' size='50'>
+<h2>Lisää ilmoitus</h2>
+Tähdellä (<b>*</b>) merkityt kentät ovat pakollisia!
+<p>Otsikko <b>*</b> <br>
+<input type='text' name='header' size='50' minlength='3' maxlength='50' required><small> 3...50 merkkiä</small>
 <p>
-Ilmoituksen tyyppi:<br>
+Ilmoituksen tyyppi <b>*</b> <br>
 <input type='radio' name='type' value='Myydään'>Myydään
 <input type='radio' name='type' value='Ostetaan'>Ostetaan
 <input type='radio' name='type' value='Annetaan'>Annetaan
 <p>
-Kuvaus: <br>
-<textarea name='content' rows='6' cols='70'></textarea>
+Kuvaus <b>*</b> <br>
+<textarea name='content' rows='6' cols='70' minlength='3' maxlength='1000' required></textarea>
+<small> 3...1000 merkkiä</small>
 <p>
-Hinta €: <br>
-<input type='number' name='price' size='5'>
+Hinta € <b>*</b> <br>
+<input type='number' name='price' size='5' min='0' max='999999' required><small> (0...999999)</small>
 <p>
-Sijainti: <br>
-<input type='text' name='location' size='50'>
+Sijainti <b>*</b> <br>
+<input type='text' name='location' size='50' minlength='3' maxlength='50' required><small> 3...50 merkkiä</small>
 <p>
-Kuva:<br>
+Kuva<br>
 <input type='file' name='photo'>
 <p>
 <input type='submit' value='Lisää tuote'>
