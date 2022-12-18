@@ -3,7 +3,7 @@ from flask import render_template, redirect, request
 import users
 import items
 import user_favourites as fav
-
+import comments
 
 @app.route('/')
 def index():
@@ -56,7 +56,14 @@ def all_items():
 @app.route('/item/<id>')
 def item(id):
     data = items.get_item_by_id(id)
-    return render_template('item.html', item=data)
+    photo = items.show_photo(id)
+    comment = comments.get_comments(id)
+    return render_template('item.html', item=data, photo=photo, comments=comment)
+
+@app.route('/show_photo/<id>')
+def show_photo(id):
+    photo = items.show_photo(id)
+    return photo
 
 
 @app.route('/own_items')
@@ -89,7 +96,11 @@ def new():
         price = request.form['price']
         location = request.form['location']
         user_id = users.user_id()
-        items.add_item(header, content, price, location, user_id)
+        id = items.add_item(header, content, price, location, user_id)
+        
+        photo = request.files['photo']
+        name = photo.filename
+        items.add_photo(name, photo, id)
         return redirect('/items')
     
 
@@ -139,3 +150,12 @@ def delete_favourite():
     item = request.form['id']
     fav.delete_favourite(user_id, item)
     return redirect('/favourites')
+
+
+@app.route("/add_comment", methods=["POST"])
+def add_comment():
+    comment = request.form["comment"]
+    item_id = request.form["item_id"]
+    user_id = users.user_id()
+    comments.add_comment(comment, item_id, user_id)
+    return redirect("/item/" + str(item_id))

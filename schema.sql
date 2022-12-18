@@ -23,3 +23,26 @@ CREATE TABLE user_favourites (
     sale_item_id INTEGER REFERENCES items,
     visible BOOLEAN
 );
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY, 
+    content TEXT, 
+    item_id INTEGER REFERENCES items, 
+    sender_id INTEGER REFERENCES users, 
+    sent_at TIMESTAMP
+);
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY, 
+    content TEXT, 
+    sender_id INTEGER REFERENCES users, 
+    reciever_id INTEGER REFERENCES users,
+    sent_at TIMESTAMP
+);
+
+CREATE TABLE photos (
+    id SERIAL PRIMARY KEY, 
+    name TEXT, 
+    data BYTEA, 
+    item_id INTEGER REFERENCES items
+);

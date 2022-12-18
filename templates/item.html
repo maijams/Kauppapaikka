@@ -1,7 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-
 {% if item %}
 
 {% for i in item %}
@@ -16,18 +15,42 @@
 <p>Lisätty:
 {{ i.sent_at.strftime('%d.%m.%Y %H:%M') }}
 
-{% endfor %}
-
-{% endif%}
+{% if photo %}
+<form action='/show_photo' method='POST'>
+<a href='/show_photo/{{ i.id }}'>Näytä kuva</a>
+</form>
+{% endif %}
 
 {% if session.user_id %}
-{% for i in item %}
+<p><a href='/add_favourite/{{ i.id }}'>Lisää ilmoitus suosikkeihin</a>
+{% endif%}
 
-<p><a href='/add_favourite/{{ i.id }}'>Lisää suosikkeihin</a>
+<h3>Kommentit:</h3>
+{% if comments %}
+{% for comment in comments %}
+<p>{{ comment.content }}<br>
+    Lähettäjä: {{ comment.username }} {{ comment.sent_at.strftime('%d.%m.%Y %H:%M') }}
+{% endfor %}
+
+{% else %}
+<p>Ei vielä kommentteja
+{% endif %}
+
+{% if session.user_id %}
+<form action='/add_comment' method='POST'>
+    <p>Jätä kommentti:<br>
+    <textarea name="comment" rows="2" cols="60"></textarea><br>
+    <input type="submit" value="Lähetä">
+    <input type="hidden" name="item_id" value="{{ i.id }}">
+</form>
+{% endif%}
+
+
 {% endfor %}
 
 
 {% else %}
+<p>Tuotetta ei löytynyt
 
 {% endif %}
 
