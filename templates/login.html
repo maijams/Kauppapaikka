@@ -1,19 +1,19 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
 
 {% if session.user_id %}
 
 {% else %}
 <br>
-<form action='/login' method='post'>
-    Tunnus: <input type='text' name='username'>
+<form action="/login" method="post">
+    Tunnus: <input type="text" name="username">
     <p>
-    Salasana: <input type='password' name='password'>
+    Salasana: <input type="password" name="password">
     <p>
-    <input type='submit' value='Kirjaudu'>
+    <input type="submit" value="Kirjaudu">
 </form>
 <p>
-Jos sinulla ei ole tunnusta, voit luoda uuden tunnuksen <a href='/register'>tästä</a>.
+Jos sinulla ei ole tunnusta, voit luoda uuden tunnuksen <a href="/register">tästä</a>.
 
 {% endif %}
 

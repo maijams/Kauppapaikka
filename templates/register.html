@@ -1,18 +1,18 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
 
 {% if session.user_id %}
 
 {% else %}
-<form action='/register' method='post'>
+<form action="/register" method="post">
     <h3> Luo uusi tunnus: </h3>
-    Tunnus: <input type='text' name='username'>
+    Tunnus: <input type="text" name="username">
     <p>
-    Salasana: <input type='password' name='password1'>
+    Salasana: <input type="password" name="password1">
     <p>
-    Salasana uudestaan: <input type='password' name='password2'>
+    Salasana uudestaan: <input type="password" name="password2">
     <p>
-    <input type='submit' value='Luo tunnus'>
+    <input type="submit" value="Luo tunnus">
 </form>
 
 {% endif %}

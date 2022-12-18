@@ -1,33 +1,33 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
 
 {% if session.user_id %}
 <p>
-<a href='/new'>Lisää ilmoitus</a>
+<a href="/new">Lisää ilmoitus</a>
 
 {% else %}
 <p>
-<a href='/login'>Kirjaudu sisään</a> lisätäksesi omia ilmoituksia
+<a href="/login">Kirjaudu sisään</a> lisätäksesi omia ilmoituksia
 
 {% endif %}
 
 <h1>Tuotteet</h1>
 
 Järjestä:
-<a href='/items_sort_newest'>Uusin</a>
-<a href='/items_sort_oldest'>Vanhin</a>
-<a href='/items_sort_lowest_price'>Halvin</a>
-<a href='/items_sort_highest_price'>Kallein</a>
-<a href='/items_sort_type_asc'>Tyyppi A-Ö</a>
-<a href='/items_sort_type_desc'>Tyyppi Ö-A</a>
+<a href="/items_sort_newest">Uusin</a>
+<a href="/items_sort_oldest">Vanhin</a>
+<a href="/items_sort_lowest_price">Halvin</a>
+<a href="/items_sort_highest_price">Kallein</a>
+<a href="/items_sort_type_asc">Tyyppi A-Ö</a>
+<a href="/items_sort_type_desc">Tyyppi Ö-A</a>
 <br>
 
 
 {% if items %}
 <p>
-<form action='/item' method='POST'>
+<form action="/item" method="POST">
 <table>
-    <thead style='text-align:left'>
+    <thead style="text-align:left">
         <tr>
             <th>Tuote</th>
             <th>Tyyppi</th>
@@ -39,11 +39,11 @@ Järjestä:
     {% for item in items %}
     <tbody>
         <tr>
-            <td><a href='/item/{{ item.id }}'>{{ item.header }}</a></td>
+            <td><a href="/item/{{ item.id }}">{{ item.header }}</a></td>
             <td>{{ item.type }}</td>
             <td>{{ item.price }} €</td>
             <td>{{ item.location }}</td>
-            <td>{{ item.sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
+            <td>{{ item.sent_at.strftime("%d.%m.%Y %H:%M") }}</td>
         </tr>
     </tbody>
     {% endfor %}

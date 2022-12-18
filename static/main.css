@@ -1,7 +1,7 @@
 body {
     margin: auto;
     max-width: 60em;
-    font-family: 'lato', sans-serif;
+    font-family: "lato", sans-serif;
     background-color: #090e1a;
     border-radius: .5em;
     color: aliceblue;
@@ -21,10 +21,6 @@ div {
     background-color: hsl(237, 50%, 21%);
     border: 4px solid hsl(0, 0%, 90%);
 }
-
-/* input, textarea {
-    margin-bottom: 1em;
-} */
 
 h1 {
     color: rgb(153, 173, 201);
