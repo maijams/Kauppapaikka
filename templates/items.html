@@ -12,14 +12,20 @@
 {% endif %}
 
 <h1>Tuotteet</h1>
-{% if items %}
-<form action='/item' method='POST'>
-Järjestä:
-<a href='/items_newest'>Uusin</a>
-<a href='/items_oldest'>Vanhin</a>
-<a href='/items_lowest_price'>Halvin</a>
-<a href='/items_highest_price'>Kallein</a>
 
+Järjestä:
+<a href='/items_sort_newest'>Uusin</a>
+<a href='/items_sort_oldest'>Vanhin</a>
+<a href='/items_sort_lowest_price'>Halvin</a>
+<a href='/items_sort_highest_price'>Kallein</a>
+<a href='/items_sort_type_asc'>Tyyppi A-Ö</a>
+<a href='/items_sort_type_desc'>Tyyppi Ö-A</a>
+<br>
+
+
+{% if items %}
+<p>
+<form action='/item' method='POST'>
 <table>
     <thead style='text-align:left'>
         <tr>

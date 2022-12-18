@@ -2,14 +2,33 @@ from db import db
 from flask import make_response
 
 def get_sorted_items(sort, direction):
-    sql = f'SELECT * FROM items WHERE visible=TRUE ORDER BY {sort} {direction}'
+    if sort == 'sent_at' and direction == 'DESC':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY sent_at DESC'
+        
+    elif sort == 'sent_at' and direction == '':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY sent_at'
+        
+    elif sort == 'price' and direction == 'DESC':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY price DESC'
+        
+    elif sort == 'price' and direction == '':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY price'
+        
+    elif sort == 'type' and direction == 'DESC':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY type DESC'
+        
+    elif sort == 'type' and direction == '':
+        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY type'
+
     result = db.session.execute(sql)
     return result.fetchall()
+
 
 def get_own_items(user_id):
     sql = 'SELECT * FROM items WHERE visible=TRUE AND user_id=:user_id ORDER BY sent_at DESC'
     result = db.session.execute(sql, {'user_id':user_id})
     return result.fetchall()
+
 
 def add_item(header, type, content, price, location, user_id):
     sql = ('INSERT INTO items (header, type, content, price, location, user_id, sent_at, visible) '
@@ -22,21 +41,25 @@ def add_item(header, type, content, price, location, user_id):
     new_id = db.session.execute(sql).fetchone()[0]
     return new_id
 
+
 def delete_item(id):
     sql = 'UPDATE items SET visible=false WHERE id=:id'
     db.session.execute(sql, {'id':id})
     db.session.commit()
+    
     
 def get_item_by_id(id):
     sql = 'SELECT * FROM items WHERE visible=TRUE AND id=:id'
     result = db.session.execute(sql, {'id':id})
     return result.fetchall()
 
+
 def add_photo(name, file, item_id):
     data = file.read()
     sql = 'INSERT INTO photos (name, data, item_id) VALUES (:name, :data, :item_id)'
     db.session.execute(sql, {'name':name, 'data':data, 'item_id':item_id})
     db.session.commit()
+    
     
 def show_photo(item):
     try:

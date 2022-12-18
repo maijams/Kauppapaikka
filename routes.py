@@ -106,27 +106,39 @@ def new():
         return redirect('/items')
     
 
-@app.route('/items_newest')
+@app.route('/items_sort_newest')
 def items_newest():
     list = items.get_sorted_items('sent_at', 'DESC')
     return render_template('items.html', items=list)
  
     
-@app.route('/items_oldest')
+@app.route('/items_sort_oldest')
 def items_oldest():
     list = items.get_sorted_items('sent_at', '')
     return render_template('items.html', items=list)
 
 
-@app.route('/items_lowest_price')
+@app.route('/items_sort_lowest_price')
 def items_lowest_price():
     list = items.get_sorted_items('price', '')
     return render_template('items.html', items=list)
 
 
-@app.route('/items_highest_price')
+@app.route('/items_sort_highest_price')
 def items_highest_price():
     list = items.get_sorted_items('price', 'DESC')
+    return render_template('items.html', items=list)
+
+
+@app.route('/items_sort_type_asc')
+def items_type_asc():
+    list = items.get_sorted_items('type', '')
+    return render_template('items.html', items=list)
+
+
+@app.route('/items_sort_type_desc')
+def items_type_desc():
+    list = items.get_sorted_items('type', 'DESC')
     return render_template('items.html', items=list)
 
 

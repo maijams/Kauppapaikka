@@ -19,7 +19,7 @@
     <tbody>
         <tr>
             <td><a href='/item/{{ item[0].id }}'>{{ item[0].header }}</a></td>
-            <td>{{ item.type }}</td>
+            <td>{{ item[0].type }}</td>
             <td>{{ item[0].price }} €</td>
             <td>{{ item[0].location }}</td>
             <td>{{ item[0].sent_at.strftime('%d.%m.%Y %H:%M') }}</td>
