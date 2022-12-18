@@ -59,13 +59,15 @@ def all_items():
 
 @app.route('/item/<id>')
 def item(id):
-    data = items.get_item_by_id(id)
     try:
+        data = items.get_item_by_id(id)
+        user = data[0].user_id
+        username = users.get_username(user)
         photo = photos.show_photo(id)
         comment = comments.get_comments(id)
     except:
         return render_template('error.html', message='Ilmoituksen näyttämisessä tapahtui virhe')
-    return render_template('item.html', item=data, photo=photo, comments=comment)
+    return render_template('item.html', item=data, username=username, photo=photo, comments=comment)
 
 
 @app.route('/show_photo/<id>')

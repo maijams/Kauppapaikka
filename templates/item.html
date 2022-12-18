@@ -12,6 +12,10 @@
 {{ i.price }} €
 <p>Sijainti:
 {{ i.location }}
+<p>Ilmoituksen jättäjä:
+    {% for username in username %}
+    {{ username[0] }}
+    {% endfor %}
 <p>Lisätty:
 {{ i.sent_at.strftime('%d.%m.%Y %H:%M') }}
 
@@ -24,7 +28,8 @@
 {% if session.user_id %}
 <p><a href='/add_favourite/{{ i.id }}'>Lisää ilmoitus suosikkeihin</a>
 {% endif%}
-
+<br>
+<br>
 <h3>Kommentit:</h3>
 {% if comments %}
 {% for comment in comments %}

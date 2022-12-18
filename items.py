@@ -59,7 +59,7 @@ def delete_item(id):
     
     
 def get_item_by_id(id):
-    sql = ('SELECT id, header, type, content, price, location, sent_at '
+    sql = ('SELECT id, header, type, content, price, user_id, location, sent_at '
            'FROM items WHERE visible=TRUE AND id=:id')
     result = db.session.execute(sql, {'id':id})
     return result.fetchall()
