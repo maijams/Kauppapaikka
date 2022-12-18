@@ -30,7 +30,6 @@ def login(username, password):
     return False
     
 
-
 def logout():
     del session['user_id']
     del session["user_name"]

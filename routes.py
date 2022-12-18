@@ -4,6 +4,7 @@ import users
 import items
 import user_favourites as fav
 import comments
+import photos
 
 @app.route('/')
 def index():
@@ -56,14 +57,14 @@ def all_items():
 @app.route('/item/<id>')
 def item(id):
     data = items.get_item_by_id(id)
-    photo = items.show_photo(id)
+    photo = photos.show_photo(id)
     comment = comments.get_comments(id)
     return render_template('item.html', item=data, photo=photo, comments=comment)
 
 
 @app.route('/show_photo/<id>')
 def show_photo(id):
-    photo = items.show_photo(id)
+    photo = photos.show_photo(id)
     return photo
 
 
@@ -103,8 +104,9 @@ def new():
         id = items.add_item(header, type, content, price, location, user_id)
         
         photo = request.files['photo']
-        name = photo.filename
-        items.add_photo(name, photo, id)
+        if photo is not None:
+            name = photo.filename
+            photos.add_photo(name, photo, id)
         return redirect('/items')
     
 

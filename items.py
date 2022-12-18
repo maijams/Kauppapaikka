@@ -1,31 +1,38 @@
 from db import db
-from flask import make_response
+
 
 def get_sorted_items(sort, direction):
     if sort == 'sent_at' and direction == 'DESC':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY sent_at DESC'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY sent_at DESC')
         
     elif sort == 'sent_at' and direction == '':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY sent_at'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY sent_at')
         
     elif sort == 'price' and direction == 'DESC':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY price DESC'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY price DESC')
         
     elif sort == 'price' and direction == '':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY price'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY price')
         
     elif sort == 'type' and direction == 'DESC':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY type DESC'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY type DESC')
         
     elif sort == 'type' and direction == '':
-        sql = 'SELECT * FROM items WHERE visible=TRUE ORDER BY type'
+        sql = ('SELECT id, header, type, price, location, sent_at '
+               'FROM items WHERE visible=TRUE ORDER BY type')
 
     result = db.session.execute(sql)
     return result.fetchall()
 
 
 def get_own_items(user_id):
-    sql = 'SELECT * FROM items WHERE visible=TRUE AND user_id=:user_id ORDER BY sent_at DESC'
+    sql = ('SELECT id, header, type, price, location, sent_at '
+           'FROM items WHERE visible=TRUE AND user_id=:user_id ORDER BY sent_at DESC')
     result = db.session.execute(sql, {'user_id':user_id})
     return result.fetchall()
 
@@ -49,25 +56,7 @@ def delete_item(id):
     
     
 def get_item_by_id(id):
-    sql = 'SELECT * FROM items WHERE visible=TRUE AND id=:id'
+    sql = ('SELECT id, header, type, content, price, location, sent_at '
+           'FROM items WHERE visible=TRUE AND id=:id')
     result = db.session.execute(sql, {'id':id})
     return result.fetchall()
-
-
-def add_photo(name, file, item_id):
-    data = file.read()
-    sql = 'INSERT INTO photos (name, data, item_id) VALUES (:name, :data, :item_id)'
-    db.session.execute(sql, {'name':name, 'data':data, 'item_id':item_id})
-    db.session.commit()
-    
-    
-def show_photo(item):
-    try:
-        sql = 'SELECT data FROM photos WHERE item_id=:item'
-        result = db.session.execute(sql, {'item':item})
-        data = result.fetchone()[0]
-        photo = make_response(bytes(data))
-        photo.headers.set("Content-Type","image/png")
-        return photo
-    except:
-        return None
