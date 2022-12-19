@@ -38,6 +38,9 @@ def get_own_items(user_id):
 
 
 def add_item(header, type, content, price, location, user_id):
+    sql = "SET TIME ZONE 'EET'"
+    db.session.execute(sql)
+    db.session.commit()
     sql = ("INSERT INTO items (header, type, content, price, location, user_id, sent_at, visible) "
            "VALUES (:header, :type, :content, :price, :location, :user_id, NOW(), true)")
     db.session.execute(
