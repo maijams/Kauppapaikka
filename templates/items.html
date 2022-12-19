@@ -11,17 +11,15 @@
 
 {% endif %}
 
-<h1>Tuotteet</h1>
-
-Järjestä:
-<a href="/items_sort_newest">Uusin</a>
-<a href="/items_sort_oldest">Vanhin</a>
-<a href="/items_sort_lowest_price">Halvin</a>
-<a href="/items_sort_highest_price">Kallein</a>
-<a href="/items_sort_type_asc">Tyyppi A-Ö</a>
+<h1>Ilmoitukset</h1>
+Klikkaa ilmoituksen otsikosta saadaksesi lisätietoja
+<p>Järjestä:&nbsp;
+<a href="/items_sort_newest">Uusin</a>&nbsp;
+<a href="/items_sort_oldest">Vanhin</a>&nbsp;
+<a href="/items_sort_lowest_price">Halvin</a>&nbsp;
+<a href="/items_sort_highest_price">Kallein</a>&nbsp;
+<a href="/items_sort_type_asc">Tyyppi A-Ö</a>&nbsp;
 <a href="/items_sort_type_desc">Tyyppi Ö-A</a>
-<br>
-
 
 {% if items %}
 <p>
@@ -29,7 +27,7 @@ Järjestä:
 <table>
     <thead style="text-align:left">
         <tr>
-            <th>Tuote</th>
+            <th>Otsikko</th>
             <th>Tyyppi</th>
             <th>Hinta</th>
             <th>Sijainti</th>
@@ -51,7 +49,7 @@ Järjestä:
 </form>
 
 {% else %}
-<h3>Ei tuotteita</h3>
+<h3>Ei ilmoituksia</h3>
 
 {% endif %}
 <p><br>

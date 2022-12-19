@@ -1,6 +1,6 @@
-# fly.toml file generated for kauppapaikka on 2022-11-20T23:27:55+02:00
+# fly.toml file generated for tsoha-kauppapaikka on 2022-12-19T01:52:12+02:00
 
-app = "kauppapaikka"
+app = "tsoha-kauppapaikka"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

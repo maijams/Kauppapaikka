@@ -67,6 +67,7 @@ def item(id):
         comment = comments.get_comments(id)
     except:
         return render_template("error.html", message="Ilmoituksen näyttämisessä tapahtui virhe")
+    print(comment)
     return render_template("item.html", item=data, username=username, photo=photo, comments=comment)
 
 

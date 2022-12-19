@@ -2,27 +2,35 @@
 
 Projekti on luotu harjoitustyönä Helsingin yliopiston kurssille Tietokantasovellus.
 
+## Linkki sovellukseen (fly.io)
+[Kauppapaikka](https://tsoha-kauppapaikka.fly.dev/)
+
 ## Projektikuvaus
 
-Harjoitustyön aiheena on kauppapaikkana toimiva verkkosovellus, jonne käyttäjät voivat jättää osto- ja myynti-ilmoituksia. 
+Harjoitustyön aiheena on kauppapaikkana toimiva verkkosovellus, jonne käyttäjät voivat jättää osto- ja myynti-ilmoituksia.
 
 ### **Sovelluksen ominaisuuksia:**
 
-- Käyttäjä voi selata osto- ja myynti-ilmoituksia sekä halutessaan suodattaa ja järjestellä
-niitä
+- Käyttäjä voi selata osto- ja myynti-ilmoituksia sekä halutessaan järjestää ne tiettyjen parametrien mukaan
+
+- Käyttäjä voi klikata ilmoitusta, jolloin tuotteesta aukeaa laajempi näkymä
+
+- Laajemmassa tuotenäkymässä käyttäjä voi nähdä ilmoitukseen jätetyt kommentit, sekä avata kuvan tuotteesta, mikä ilmoitukseen on lisätty sellainen
 
 - Käyttäjä voi luoda tunnuksen jonka avulla kirjaudutaan sovellukseen
 
-Näiden lisäksi kirjautunut käyttäjä voi:
+**Näiden lisäksi kirjautunut käyttäjä voi:**
+
+- Kirjautua sisään ja ulos
 
 - Nähdä listauksen omista ilmoituksistaan
 
-- Jättää uusia ilmoituksia ja poistaa vanhoja
+- Lisätä uusia ilmoituksia
 
-- Lisätä muiden käyttäjien jättämiä ilmoituksia suosikkeihin
+- Poistaa omia ilmoituksiaan
 
-Ylläpitäjä voi:
+- Nähdä listauksen omista suosikeistaan
 
-- Tarvittaessa poistaa käyttäjien jättämiä ilmoituksia
+- Lisätä ilmoituksia suosikkeihin & poistaa ilmoituksia suosikeista
 
-- Tarvittaessa poistaa käyttäjätilin
+- Lisätä kommentteja ilmoituksiin

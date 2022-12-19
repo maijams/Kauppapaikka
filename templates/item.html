@@ -6,18 +6,14 @@
 {% for i in item %}
 
 <h1>{{ i.header }}</h1>
-<p>Kuvaus:
-{{ i.content }}
-<p>Hinta:
-{{ i.price }} €
-<p>Sijainti:
-{{ i.location }}
-<p>Ilmoituksen jättäjä:
+<p><i><b>Kuvaus</b></i>: {{ i.content }}
+<p><i><b>Hinta</b></i>: {{ i.price }} €
+<p><i><b>Sijainti</b></i>: {{ i.location }}
+<p><i><b>Ilmoituksen jättäjä</b></i>: 
     {% for username in username %}
     {{ username[0] }}
     {% endfor %}
-<p>Lisätty:
-{{ i.sent_at.strftime("%d.%m.%Y %H:%M") }}
+<p><i><b>Lisätty</b></i>: {{ i.sent_at.strftime("%d.%m.%Y %H:%M") }}
 
 {% if photo %}
 <form action="/image" method="POST">
@@ -34,7 +30,7 @@
 {% if comments %}
 {% for comment in comments %}
 <p>{{ comment.content }}<br>
-    Lähettäjä: {{ comment.username }} {{ comment.sent_at.strftime("%d.%m.%Y %H:%M") }}
+    <i>Lähettäjä: {{ comment.username }} {{ comment.sent_at.strftime("%d.%m.%Y %H:%M") }}</i>
 {% endfor %}
 
 {% else %}
@@ -42,10 +38,10 @@
 {% endif %}
 
 {% if session.user_id %}
-<form action="/add_comment" method="POST">
+<form class="form-styled" action="/add_comment" method="POST">
     <p>Jätä kommentti:<br>
     <textarea name="comment" rows="2" cols="60" minlength="3" maxlength="200" required></textarea><br>
-    <small>Pituus 3...200 merkkiä</small><bR>
+    <small>3...200 merkkiä</small><bR>
     <input type="submit" value="Lähetä">
     <input type="hidden" name="item_id" value="{{ i.id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">

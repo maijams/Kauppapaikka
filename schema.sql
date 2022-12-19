@@ -9,7 +9,6 @@ CREATE TABLE items (
     header TEXT,
     type TEXT,
     content TEXT,
-    category INTEGER,
     price INTEGER,
     user_id INTEGER REFERENCES users,
     location TEXT,

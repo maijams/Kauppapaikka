@@ -2,7 +2,7 @@ body {
     margin: auto;
     max-width: 60em;
     font-family: "lato", sans-serif;
-    background-color: #090e1a;
+    background-color: #0a1122;
     border-radius: .5em;
     color: aliceblue;
     padding-left: 1em;
@@ -16,50 +16,53 @@ div {
 
 .form-styled {
     box-sizing: border-box;
-    padding: 2rem;
-    border-radius: 1rem;
-    background-color: hsl(237, 50%, 21%);
-    border: 4px solid hsl(0, 0%, 90%);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;    border-radius: 1rem;
+    background-color: hsl(221, 44%, 18%);
 }
 
 h1 {
-    color: rgb(153, 173, 201);
+    color: rgb(204, 219, 242);
 }
 
 a:link {
-    color: #8ebaec;
+    color: #9fc6f2;
 }
 
 a:visited {
-    color: #8ebaec;
+    color: #9fc6f2;
 }
 
 .header {
-    background: rgb(68, 84, 118);
-    padding: 1em;
+    background: rgb(90, 121, 208);
+    padding: 0.5em;
     font-size: 1.3em;
-    border-radius: .5em;
+    border-radius: 1em;
     text-align: center;
 }
 
 .topnav {
-    background-color: rgb(31, 51, 70);
+    background-color: rgb(68, 116, 179);
     overflow: hidden;
-    color: aliceblue;
+    color: rgb(237, 244, 249);
+    border-radius: 1em;
+    border: 4px solid hsl(233, 53%, 81%);
 }
   
 .topnav a {
     float: left;
-    color: #8ebaec;
+    color: #d0e2f6;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .topnav a:hover {
-    background-color: rgb(43, 56, 102);
-    color: #8ebaec;
+    background-color: rgb(63, 112, 177);
+    color: #d1e2f7;
 }
 
 table {
@@ -67,12 +70,19 @@ table {
     font-size: 1em;
 }
 
-th,
-td {
-  border: 1px solid rgb(30, 71, 80);
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+th {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size: 18px;
 }
 
+td {
+    border: 2px solid rgb(197, 214, 237);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    background-color: rgb(26, 31, 54);
+}

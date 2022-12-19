@@ -19,7 +19,7 @@ def get_favourites(user_id):
     return favourites
 
 def is_already_favourite(user_id, item):
-    sql = "SELECT * FROM user_favourites WHERE visible=TRUE AND user_id=:user_id AND sale_item_id=:item"
+    sql = "SELECT id FROM user_favourites WHERE visible=TRUE AND user_id=:user_id AND sale_item_id=:item"
     result = db.session.execute(sql, {"user_id":user_id, "item":item})
     if len(result.fetchall()) > 0:
         return True
